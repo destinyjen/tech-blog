@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const blog = blogData.map((blog) => blog.get({ plain: true }));
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
       logged_in: req.session.logged_in 
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -78,6 +79,13 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+router.get('/profile', (req, res) => {
+  res.render('profile', {
+    logged_in: req.session.logged_in
+  });
+});
+
 
 module.exports = router;
 // corresponds to the url my user lands on and the view they will see (the html file)
