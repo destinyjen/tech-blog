@@ -1,0 +1,1 @@
+// associations between tables (foreign keys connected to user_id, etc)
